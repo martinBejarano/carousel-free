@@ -1,0 +1,77 @@
+@mixin neo( $radius , $eje ){
+    border-radius: $radius;
+    background: #e0e0e0;
+    box-shadow:  $eje $eje ($eje*2) #bebebe,
+    (-$eje) (-$eje) ($eje*2) #ffffff;
+}
+
+*, *::after, *::before{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    background-color: rgb(233, 233, 233);
+}
+
+.carousel-container{
+    $r: &;
+
+    width: 650px;
+    padding: 25px;
+
+    @include neo(2em, 1em);
+    overflow: hidden;
+
+    &__inner-container{
+        display: flex;
+        gap: 10px;
+        
+        transition: 1s transform;        
+        // transform: translateX(-50%);
+    }
+
+    &__item{
+        height: 300px;
+        border-radius: 20px;
+        overflow: hidden;
+
+        @include neo(1em, 3px);
+
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__options-contianer{
+        width: fit-content;
+        margin: 0 auto;
+        margin-top: 20px;
+
+        display: flex;
+        gap: 50px;
+
+        #{$r}__option{
+            width: 50px;
+            height: 50px;
+
+            @include neo(2em,3px);
+
+            transition: 0.5s background;
+
+            &.active{
+                background-color: rgb(184, 184, 184);
+            }
+        }
+    }
+    
+}
